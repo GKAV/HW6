@@ -1,0 +1,31 @@
+<!-- myapp/templates/myapp/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Information</title>
+</head>
+<body>
+    <header>
+        <img src="{{ MEDIA_URL }}FH_IDiAL_Logo_DE_A4_rgb.jpg" alt="FH Dortmund Logo">
+        <h2>User Information</h2>
+    </header>
+
+    <form method="post" action="{% url 'index' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+
+    <h3>Users:</h3>
+    <ul>
+        {% for user in user_data %}
+            <li>{{ user.name }} - {{ user.email }} - {{ user.age }}</li>
+        {% endfor %}
+    </ul>
+
+
+    <footer>
+        <p>This is a disclaimer text. Replace it with your own disclaimer.</p>
+    </footer>
+</body>
+</html>
